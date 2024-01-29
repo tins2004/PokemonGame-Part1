@@ -198,34 +198,43 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StartMenu" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
+anchor_left = -0.017
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 18.36
 offset_top = 800.0
 offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
 
 [node name="NewGameButton" type="Button" parent="StartMenu"]
-layout_mode = 0
-offset_left = 509.0
-offset_top = 424.0
-offset_right = 587.0
-offset_bottom = 455.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.501
+anchor_right = 0.505
+anchor_bottom = 0.501
+offset_left = -183.4
+offset_top = -83.72
+offset_right = 182.6
+offset_bottom = 83.28
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Chơi mới"
+icon_alignment = 1
 
 [node name="ContinueGameButton" type="Button" parent="StartMenu"]
-layout_mode = 0
-offset_left = 513.0
-offset_top = 479.0
-offset_right = 591.0
-offset_bottom = 510.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.792
+anchor_right = 0.505
+anchor_bottom = 0.792
+offset_left = -183.4
+offset_top = -72.2401
+offset_right = 182.6
+offset_bottom = 71.7599
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Chơi tiếp"
