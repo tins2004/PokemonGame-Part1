@@ -1,9 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://db32jl16plh3j"]
+[gd_scene load_steps=21 format=3 uid="uid://db32jl16plh3j"]
 
 [ext_resource type="Script" path="res://src/GUI/Scripts/MainScene.gd" id="1_kbw42"]
 [ext_resource type="Texture2D" uid="uid://g4wq5kogo3kn" path="res://img/Player/female.jpg" id="2_c5bgs"]
+[ext_resource type="Texture2D" uid="uid://w7a27151xh2n" path="res://img/Background/MainBackground.jpg" id="2_pj641"]
 [ext_resource type="Texture2D" uid="uid://bydr46k5amlgv" path="res://img/Player/male.jpg" id="3_j5vic"]
 [ext_resource type="Script" path="res://src/BLL/Scripts/Humans/Player.gd" id="4_whvuw"]
+[ext_resource type="AudioStream" uid="uid://v5i6mgmjwuy7" path="res://sound/1-01. Opening.mp3" id="6_cxdjx"]
+
+[sub_resource type="SystemFont" id="SystemFont_ooqx7"]
+font_weight = 975
+
+[sub_resource type="LabelSettings" id="LabelSettings_jmhjp"]
+font = SubResource("SystemFont_ooqx7")
+font_size = 70
+font_color = Color(0.298039, 0.298039, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfrl3"]
+font_size = 20
+font_color = Color(0.443137, 0.415686, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_77j8b"]
+font_size = 30
+font_color = Color(0.298039, 0.298039, 0, 1)
 
 [sub_resource type="Animation" id="Animation_hxb3u"]
 resource_name = "Female"
@@ -12,7 +30,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FemaleButton:frame")
+tracks/0/path = NodePath("ChonGioiTinh/FemaleButton:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +47,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MaleButton:frame")
+tracks/0/path = NodePath("ChonGioiTinh/MaleButton:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -44,7 +62,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("FemaleButton:frame")
+tracks/0/path = NodePath("ChonGioiTinh/FemaleButton:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +74,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaleButton:frame")
+tracks/1/path = NodePath("ChonGioiTinh/MaleButton:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -80,6 +98,22 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("InitMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 800), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gnvnv"]
+resource_name = "OpenOptionMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionMenu:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -155,10 +189,46 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1080, 720)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("OptionMenu:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 800)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("OptionMenu:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1080, 720)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FirstScene:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1080, 720)]
+}
 
 [sub_resource type="Animation" id="Animation_17nmb"]
 resource_name = "SetScale"
-length = 0.5
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -166,7 +236,7 @@ tracks/0/path = NodePath("InitMenu:size")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1080, 720)]
@@ -178,7 +248,31 @@ tracks/1/path = NodePath("StartMenu:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1080, 720)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("OptionMenu:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1080, 720)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FirstScene:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1080, 720)]
@@ -187,6 +281,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7clwb"]
 _data = {
 "OpenInitMenu": SubResource("Animation_o5xt7"),
+"OpenOptionMenu": SubResource("Animation_gnvnv"),
 "OpenStartMenu": SubResource("Animation_v12cf"),
 "RESET": SubResource("Animation_kvi8x"),
 "SetScale": SubResource("Animation_17nmb")
@@ -196,24 +291,109 @@ _data = {
 script = ExtResource("1_kbw42")
 metadata/_edit_use_anchors_ = true
 
+[node name="MainBackground" type="Sprite2D" parent="."]
+position = Vector2(540, 360)
+texture = ExtResource("2_pj641")
+
+[node name="FirstScene" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="PokemonNhom4" type="Label" parent="FirstScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.5
+offset_top = -68.5
+offset_right = 461.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pokemon - Nhóm 4"
+label_settings = SubResource("LabelSettings_jmhjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGame" type="Button" parent="FirstScene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="ThongTin" type="Label" parent="FirstScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.0
+offset_top = -27.0
+offset_right = 325.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "'Chạm' bất kì điểm nào trên màn hình để săn Pokemon"
+label_settings = SubResource("LabelSettings_rfrl3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="StartMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 800.0
-offset_bottom = 800.0
+offset_right = 1080.0
+offset_bottom = 1520.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="PokemonNhom4" type="Label" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.0
+offset_top = -275.0
+offset_right = 462.0
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pokemon - Nhóm 4"
+label_settings = SubResource("LabelSettings_jmhjp")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NewGameButton" type="Button" parent="StartMenu"]
-layout_mode = 0
-offset_left = 509.0
-offset_top = 424.0
-offset_right = 587.0
-offset_bottom = 455.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -25.0
+offset_right = 75.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -221,60 +401,141 @@ size_flags_vertical = 4
 text = "Chơi mới"
 
 [node name="ContinueGameButton" type="Button" parent="StartMenu"]
-layout_mode = 0
-offset_left = 513.0
-offset_top = 479.0
-offset_right = 591.0
-offset_bottom = 510.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -99.0001
+offset_right = 75.0
+offset_bottom = -49.0001
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Chơi tiếp"
 
+[node name="OptionButton" type="Button" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 45.9999
+offset_right = 75.0
+offset_bottom = 95.9999
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Khác"
+
+[node name="QuitButton" type="Button" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 118.0
+offset_right = 75.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Thoát"
+
 [node name="InitMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
 
-[node name="FemaleButton" type="Sprite2D" parent="InitMenu"]
-position = Vector2(394, 360)
+[node name="Taomoi" type="Label" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -461.0
+offset_top = -275.0
+offset_right = 462.0
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tạo mới"
+label_settings = SubResource("LabelSettings_jmhjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChonGioiTinh" type="Label" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -101.0
+offset_right = 51.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Chọn giới tính:"
+label_settings = SubResource("LabelSettings_77j8b")
+metadata/_edit_group_ = true
+
+[node name="FemaleButton" type="Sprite2D" parent="InitMenu/ChonGioiTinh"]
+position = Vector2(253, 13)
 texture = ExtResource("2_c5bgs")
 hframes = 4
 vframes = 4
 metadata/_edit_group_ = true
 
-[node name="FemaleButton" type="Button" parent="InitMenu/FemaleButton"]
+[node name="FemaleButton" type="Button" parent="InitMenu/ChonGioiTinh/FemaleButton"]
 anchors_preset = -1
-anchor_left = -0.234
-anchor_top = -0.266
-anchor_right = 1.20313
-anchor_bottom = 1.18713
-offset_left = -32.024
+anchor_left = 0.187
+anchor_top = 0.20275
+anchor_right = 0.762995
+anchor_bottom = 0.968375
+offset_left = -31.968
 offset_top = -31.976
-offset_right = -32.0
+offset_right = 23.1683
 offset_bottom = -31.976
 grow_vertical = 2
+scale = Vector2(0.4, 1)
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="MaleButton" type="Sprite2D" parent="InitMenu"]
-position = Vector2(655, 357)
+[node name="MaleButton" type="Sprite2D" parent="InitMenu/ChonGioiTinh"]
+position = Vector2(316, 15)
 texture = ExtResource("3_j5vic")
 hframes = 4
 vframes = 4
 metadata/_edit_group_ = true
 
-[node name="MaleButton" type="Button" parent="InitMenu/MaleButton"]
+[node name="MaleButton" type="Button" parent="InitMenu/ChonGioiTinh/MaleButton"]
 anchors_preset = -1
-anchor_left = -0.141
-anchor_top = -0.254862
-anchor_right = 1.24963
-anchor_bottom = 1.21871
+anchor_left = 0.187125
+anchor_top = 0.156125
+anchor_right = 0.780875
+anchor_bottom = 0.953083
 offset_left = -31.976
-offset_top = -26.6889
+offset_top = -31.992
 offset_right = -31.976
 offset_bottom = -31.9973
 grow_horizontal = 2
@@ -286,48 +547,49 @@ metadata/_edit_use_anchors_ = true
 
 [node name="NameEdit" type="LineEdit" parent="InitMenu"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.432778
-anchor_top = 0.721
-anchor_right = 0.622778
-anchor_bottom = 0.831
-offset_left = -0.400024
-offset_top = -0.120001
-offset_right = 0.399963
-offset_bottom = -0.320007
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -15.0
+offset_right = 80.0
+offset_bottom = 55.0
 grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.26651, 0.88)
 placeholder_text = "Nhập tên"
-metadata/_edit_use_anchors_ = true
 
-[node name="InitBackButton" type="Button" parent="InitMenu"]
-layout_mode = 2
-anchor_left = 0.083
-anchor_top = 0.764
-anchor_right = 0.272
-anchor_bottom = 0.922
-offset_left = 0.359993
-offset_top = -0.0800171
-offset_right = 0.23999
-offset_bottom = 0.159973
-grow_vertical = 0
+[node name="BackButton" type="Button" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 190.0
+offset_right = 85.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 4
 text = "Trở lại"
-metadata/_edit_use_anchors_ = true
 
 [node name="NextButton" type="Button" parent="InitMenu"]
 layout_mode = 2
 anchor_left = 0.68763
-anchor_top = 0.772333
+anchor_top = 0.643166
 anchor_right = 0.87663
-anchor_bottom = 0.930333
-offset_left = 0.359993
-offset_top = -0.0800171
-offset_right = 0.23999
-offset_bottom = 0.159973
+anchor_bottom = 0.801166
+offset_left = -267.64
+offset_top = -0.0797729
+offset_right = -321.76
+offset_bottom = -63.8398
 grow_vertical = 0
 size_flags_vertical = 4
 text = "Tạo mới"
-metadata/_edit_use_anchors_ = true
 
 [node name="AnimationSex" type="AnimationPlayer" parent="InitMenu"]
 libraries = {
@@ -337,15 +599,147 @@ libraries = {
 [node name="Player" type="Node" parent="InitMenu"]
 script = ExtResource("4_whvuw")
 
+[node name="OptionMenu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 800.0
+offset_right = 1080.0
+offset_bottom = 1520.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="PokemonNhom4" type="Label" parent="OptionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -255.0
+offset_right = 323.0
+offset_bottom = -159.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pokemon - Nhóm 4"
+label_settings = SubResource("LabelSettings_jmhjp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ThongTin" type="Label" parent="OptionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -147.0
+offset_right = 323.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Đội ngũ sản xuất: 
+                    Nhóm 4 - Môn Đồ họa máy tính - Thầy Huỳnh Thanh Sơn
+Ý tưởng trò chơi: 
+                    Tựa game dựa trên một phần nội dung của 
+                    bộ phim và tựa game huyền thoại cùng tên - Pokemon.
+"
+label_settings = SubResource("LabelSettings_rfrl3")
+
+[node name="FullScreenToggled" type="CheckButton" parent="OptionMenu"]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 426.0
+offset_right = 652.0
+offset_bottom = 450.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="OptionMenu/FullScreenToggled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -16.0
+offset_right = -30.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toàn màn hình:"
+label_settings = SubResource("LabelSettings_rfrl3")
+
+[node name="VolumeSlider" type="HSlider" parent="OptionMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_top = 0.692
+anchor_right = 0.589
+anchor_bottom = 0.724
+offset_left = -2.56
+offset_top = 9.75974
+offset_right = -3.12006
+offset_bottom = 9.71973
+min_value = -10.0
+max_value = 3.0
+
+[node name="Label" type="Label" parent="OptionMenu/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -44.5
+offset_right = 48.5
+offset_bottom = -15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Âm thanh"
+label_settings = SubResource("LabelSettings_rfrl3")
+
+[node name="BackButton" type="Button" parent="OptionMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 190.0
+offset_right = 85.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+text = "Trở lại"
+
 [node name="AnimationScene" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7clwb")
 }
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_cxdjx")
+autoplay = true
+
+[connection signal="pressed" from="FirstScene/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="StartMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="StartMenu/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
-[connection signal="pressed" from="InitMenu/FemaleButton/FemaleButton" to="." method="_on_female_button_pressed"]
-[connection signal="pressed" from="InitMenu/MaleButton/MaleButton" to="." method="_on_male_button_pressed"]
+[connection signal="pressed" from="StartMenu/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="StartMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="InitMenu/ChonGioiTinh/FemaleButton/FemaleButton" to="." method="_on_female_button_pressed"]
+[connection signal="pressed" from="InitMenu/ChonGioiTinh/MaleButton/MaleButton" to="." method="_on_male_button_pressed"]
 [connection signal="text_changed" from="InitMenu/NameEdit" to="." method="_on_name_edit_text_changed"]
-[connection signal="pressed" from="InitMenu/InitBackButton" to="." method="_on_init_back_button_pressed"]
+[connection signal="pressed" from="InitMenu/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="InitMenu/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="toggled" from="OptionMenu/FullScreenToggled" to="." method="_on_full_screen_toggled_toggled"]
+[connection signal="value_changed" from="OptionMenu/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="OptionMenu/BackButton" to="." method="_on_back_button_pressed"]

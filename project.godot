@@ -26,3 +26,4 @@ SaveLoad="*res://src/DAL/Scripts/SaveLoad.gd"
 
 window/size/viewport_width=1080
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"

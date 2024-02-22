@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4e8fd150gelf"]
+[gd_scene load_steps=16 format=3 uid="uid://d4e8fd150gelf"]
 
 [ext_resource type="Script" path="res://src/BLL/Scripts/Humans/PlayerController.gd" id="1_8wmv1"]
-[ext_resource type="Texture2D" uid="uid://bydr46k5amlgv" path="res://img/Player/male.jpg" id="1_aelyl"]
+[ext_resource type="Texture2D" uid="uid://uc1njrsaarst" path="res://img/Player/male.png" id="2_6npsh"]
+[ext_resource type="AudioStream" uid="uid://csjb1bld823wq" path="res://sound/1-02. Theme Of Pallet Town.mp3" id="3_bk0ue"]
+[ext_resource type="AudioStream" uid="uid://khm1sm5dbjmy" path="res://sound/1-03. Professor Oak.mp3" id="4_85a2v"]
+[ext_resource type="AudioStream" uid="uid://1lmey4xa1jtv" path="res://sound/1-04. Oak's Laboratory.mp3" id="5_7v5sq"]
+[ext_resource type="AudioStream" uid="uid://ccahkbdf40d07" path="res://sound/1-05. Your Rival Appears.mp3" id="6_m63os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhfh"]
 size = Vector2(64, 64)
@@ -115,11 +119,22 @@ _data = {
 "WalkUp": SubResource("Animation_xsha5")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pdf84"]
+streams_count = 4
+stream_0/stream = ExtResource("3_bk0ue")
+stream_0/weight = 0.0
+stream_1/stream = ExtResource("4_85a2v")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_7v5sq")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_m63os")
+stream_3/weight = 1.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_8wmv1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_aelyl")
+texture = ExtResource("2_6npsh")
 hframes = 4
 vframes = 4
 
@@ -130,3 +145,6 @@ shape = SubResource("RectangleShape2D_unhfh")
 libraries = {
 "": SubResource("AnimationLibrary_oacx4")
 }
+
+[node name="AudioIdle" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_pdf84")

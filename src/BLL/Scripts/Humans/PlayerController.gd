@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const SPEED_WALK = 300
+const SPEED_WALK = 200
 
-@onready var spriteFemale = preload("res://img/Player/female.jpg")
-@onready var spriteMale = preload("res://img/Player/male.jpg")
+@onready var spriteFemale = preload("res://img/Player/female.png")
+@onready var spriteMale = preload("res://img/Player/male.png")
 
 @onready var animPlayer = $AnimationPlayer
 @onready var spritePlayer = $Sprite2D
@@ -16,8 +16,20 @@ func _ready():
 	
 	print(Global.player.getName())
 
+func _process(delta):
+	if $AudioIdle.get_playback_position() == 0 or Global.wonPokemon:
+		$AudioIdle.play()
+		Global.wonPokemon = false
+
+
 func _physics_process(delta):
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * SPEED_WALK
+	
+	if velocity.x != 0 or velocity.y != 0:
+		Global.isWalking = true
+	else:
+		Global.isWalking = false
+	
 	velocity = checkWalkPlayer(velocity)
 	animWalkPlayer(velocity)
 	move_and_slide()
