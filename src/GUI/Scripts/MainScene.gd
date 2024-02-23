@@ -18,7 +18,6 @@ func _ready():
 	
 	continueButton.visible = !Global.isFirstStartGame
 
-
 func _on_start_game_pressed():
 	joinScene_StartMenu()
 	firstScene.visible = false
@@ -53,9 +52,14 @@ func _on_continue_game_button_pressed():
 	get_tree().change_scene_to_file(curSceneGame)
 
 func _on_option_button_pressed():
+	$OptionMenu/VolumeSlider.set_value_no_signal(Global.volume)
+	$OptionMenu/FullScreenToggled.button_pressed = Global.fullScreen
+	
 	joinScene_OptionMenu()
 
 func _on_quit_button_pressed():
+	if not Global.isFirstStartGame:
+		SaveLoad.loadGame()
 	get_tree().quit()
 
 
@@ -73,7 +77,10 @@ func _on_name_edit_text_changed(new_text):
 	Global.player.setName(new_text)
 
 func _on_next_button_pressed():
+	SaveLoad.deleteFile()
+	
 	SaveLoad.saveGame()
+	SaveLoad.loadGame()
 	get_tree().change_scene_to_file(curSceneGame)
 
 #Button even option menu
@@ -82,6 +89,8 @@ func _on_full_screen_toggled_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	
+	Global.fullScreen = toggled_on
 
 func _on_volume_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(master_bus, value)
@@ -90,4 +99,6 @@ func _on_volume_slider_value_changed(value):
 		AudioServer.set_bus_mute(master_bus, true)
 	else:
 		AudioServer.set_bus_mute(master_bus, false)
+	
+	Global.volume = value
 

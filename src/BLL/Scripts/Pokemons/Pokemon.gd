@@ -109,19 +109,41 @@ func addDamage(Damage: int, ElementSkill: int):
 		elif ElementSkill == 5:
 			elementSkillDamage = 1/2
 	
-	heart -= abs((Damage*elementSkillDamage) - (defense*2/3))
+	var totalDagame = (Damage*elementSkillDamage) - (defense/2)
+	if totalDagame > 0:
+		heart -= totalDagame
+	else:
+		heart -= 10
 
 func addBuffHeart(Heart: int):
 	heart += Heart
 
-func addBuffDamage(Damage: int):
-	attackDamage += Damage
+func addBuffEnergy(Energy: int):
+	energy += Energy
 
-func addBuffDefense(Defense: int):
-	defense += Defense
+func addBuffHeartFloat(Heart: float):
+	heart += heart*Heart
 
-func energyRecovery():
-	energy += 2
+func addBuffDamage(Damage: float):
+	attackDamage += attackDamage*Damage
+
+func addBuffDefense(Defense: float):
+	defense += defense*Defense
+
+func reduceHeartFloat(Heart: float):
+	heart -= heart*Heart
+
+func reduceDamage(Damage: float):
+	attackDamage -= attackDamage*Damage
+
+func reduceDefense(Defense: float):
+	defense -= defense*Defense
+
+func reduceEnergy(Energy: int):
+	energy -= Energy
+
+func reduceEnergyFloat(Energy: float):
+	energy -= energy*Energy 
 
 #Attack
 func normalAttack() -> int:
@@ -132,5 +154,6 @@ func normalNameAttack() -> String:
 
 func normalInfoAttack() -> String:
 	return "Gây sát thương vật lý lên 
-			đối phương. 
+			đối phương.
+			Sát thương: " + str(attackDamage) +"
 			Không tiêu hao năng lượng."

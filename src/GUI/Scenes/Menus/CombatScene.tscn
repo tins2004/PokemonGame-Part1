@@ -386,7 +386,8 @@ offset_left = -3.596
 offset_top = -4.898
 offset_right = -17.0
 offset_bottom = 6.76
-text = "Hiệu ứng: Bỏng, Chóng"
+text = "Sát thương:  500   
+Giáp:              500"
 
 [node name="Enemy" type="Control" parent="Panel/InfoCombat"]
 layout_mode = 1
@@ -431,7 +432,8 @@ offset_left = -0.280003
 offset_top = 31.958
 offset_right = 0.262939
 offset_bottom = 31.96
-text = "Hiệu ứng: Bỏng, Chóng"
+text = "Sát thương:  500   
+Giáp:              500"
 
 [node name="OptionInfo" type="Control" parent="Panel/InfoCombat"]
 layout_mode = 1
@@ -501,7 +503,7 @@ metadata/_edit_group_ = true
 
 [node name="Skill1" type="Button" parent="Panel/OptionBox"]
 layout_mode = 2
-text = "[ Z ] | Skill 1"
+text = "[ Z ] | Tấn công cơ bản"
 alignment = 0
 
 [node name="Skill2" type="Button" parent="Panel/OptionBox"]
@@ -532,23 +534,31 @@ alignment = 0
 [node name="AudioCombat" type="AudioStreamPlayer2D" parent="."]
 process_mode = 2
 stream = ExtResource("2_8ycrl")
-volume_db = 15.0
+volume_db = 12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_33bkb")
 }
 
+[node name="TimerAttackTaget" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="TimerEnergyCount" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="AudioAttackEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_vhjxb")
-volume_db = 20.0
+volume_db = 15.0
 
 [node name="AudioBuffEffect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_r2u6b")
-volume_db = 20.0
+volume_db = 15.0
 
 [node name="WonPanel" type="Sprite2D" parent="."]
 visible = false
@@ -574,3 +584,5 @@ vertical_alignment = 1
 [connection signal="pressed" from="Panel/OptionBox/ChangePokemon" to="." method="_on_change_pokemon_pressed"]
 [connection signal="pressed" from="Panel/OptionBox/ThuPhuc" to="." method="_on_thu_phuc_pressed"]
 [connection signal="pressed" from="Panel/OptionBox/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="TimerAttackTaget" to="." method="_on_timer_attack_taget_timeout"]
+[connection signal="timeout" from="TimerEnergyCount" to="." method="_on_timer_energy_count_timeout"]

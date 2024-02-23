@@ -29,5 +29,12 @@ offset_bottom = 236.0
 text = "Đi dạo trên cỏ sẽ gặp pokemon 
 thời gian random tối da 15s"
 
+[node name="Label2" type="Label" parent="PokemonPosition"]
+offset_left = 57.0
+offset_top = 70.0
+offset_right = 394.0
+offset_bottom = 187.0
+text = "Ấn Z hoặc Esc để mở backpack"
+
 [node name="Player" parent="." instance=ExtResource("1_ktbt8")]
 position = Vector2(257, 246)

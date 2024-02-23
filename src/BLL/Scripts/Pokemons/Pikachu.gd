@@ -17,33 +17,44 @@ func _init(Level: int):
 		attackDamage = 75 + LEVELUP2
 		defense = 70 + LEVELUP2
 	else:
-		heart = (60 * Level) / 2
-		energy = (50 * Level) / 2
-		attackDamage = (75 * Level) / 2
-		defense = (70 * Level) / 2
+		heart = (60 * Level) * 2/3
+		energy = (50 * Level) * 2/3
+		attackDamage = (75 * Level) * 2/3
+		defense = (70 * Level) * 2/3
 
 
-func skill1() -> int:
-	return 10
+func skill1(enemy: Pokemon) -> int:
+	if energy < 50:
+		return 0
+	
+	reduceEnergy(50)
+	enemy.reduceDefense(0.03)
+	return (attackDamage + 20)
 
 func skill1Type() -> int:
 	return 0
 
 func skill1Name() -> String:
-	return "Skill 1"
+	return "Điện 100.000 Vôn"
 
 func skill1Info() -> String:
-	return "?????
-			Gây: 10 sát thương
-			Tiêu hao: 50 năng lượng."
+	return "Phóng luồn điện sát thương và 
+			làm tê liệt giáp kẻ thù.
+			Sát thương: " + str(attackDamage + 20) + "
+			Năng lượng: 50
+			Giảm 3% giáp kẻ thù"
 
 func skill2():
-	addBuffHeart(10)
+	if energy < 50:
+		return 0
+	
+	reduceEnergy(50)
+	addBuffHeart(80)
 
 func skill2Name() -> String:
-	return "Skill 2"
+	return "Kích điện"
 
 func skill2Info() -> String:
-	return "?????
-			Hồi: 10 máu
-			Tiêu hao: 50 năng lượng."
+	return "Pikachu tự kích điện bản thân.
+			Năng lượng: 50
+			Hồi 80 máu"

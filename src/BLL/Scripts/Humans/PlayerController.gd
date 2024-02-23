@@ -5,6 +5,8 @@ const SPEED_WALK = 200
 @onready var spriteFemale = preload("res://img/Player/female.png")
 @onready var spriteMale = preload("res://img/Player/male.png")
 
+@onready var backpackScene = preload("res://src/GUI/Scenes/Menus/BackpackScene.tscn")
+
 @onready var animPlayer = $AnimationPlayer
 @onready var spritePlayer = $Sprite2D
 
@@ -17,10 +19,14 @@ func _ready():
 	print(Global.player.getName())
 
 func _process(delta):
-	if $AudioIdle.get_playback_position() == 0 or Global.wonPokemon:
+	if $AudioIdle.get_playback_position() == 0 or Global.endCombat:
 		$AudioIdle.play()
-		Global.wonPokemon = false
+		Global.endCombat = false
 
+func _input(event):
+	if Input.is_physical_key_pressed(KEY_Z) or Input.is_physical_key_pressed(KEY_ESCAPE):
+		var newscene = backpackScene.instantiate()
+		get_tree().root.add_child(newscene)
 
 func _physics_process(delta):
 	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * SPEED_WALK

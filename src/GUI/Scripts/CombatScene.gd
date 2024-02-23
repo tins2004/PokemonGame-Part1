@@ -2,15 +2,18 @@ extends CanvasLayer
 
 @onready var animPoke = $AnimationPlayer
 @onready var timer = $Timer
+@onready var timerAttackTaget = $TimerAttackTaget
 
 var canSelect = false
 var numberSelect = 0
+var canAttack = true
+var countRoundCombat = 1
 
 var pokemonPlayer
 var pokemonEnemy
 var randomModule = RandomNumberGenerator.new()
 var levelRandom = RandomNumberGenerator.new()
-var pokemonEnemyLevel = randomModule.randi_range(1, 10)
+var pokemonEnemyLevel = randomModule.randi_range(1, 5)
 
 var realHeartEnemy
 var realEnergyEnemy
@@ -45,17 +48,32 @@ func _ready():
 	
 	$Panel/InfoCombat/OptionInfo.visible = false
 	$AudioCombat.play()
+	
+	timerAttackTaget.paused = true
 
 func _process(delta):
 	playerPokemonInfo()
 	enemyPokemonInfo()
 	
-	keyInput()
+	if canAttack:
+		$Panel/InfoCombat/Player/PlayerTaget.visible = true
+		$Panel/InfoCombat/Enemy/EnemyTaget.visible = false
+		keyInput()
+	else:
+		$Panel/InfoCombat/Player/PlayerTaget.visible = false
+		$Panel/InfoCombat/Enemy/EnemyTaget.visible = true
+		timerAttackTaget.paused = false
+	
+	if Input.is_physical_key_pressed(KEY_Q):
+		selectQuit()
 	
 	if pokemonEnemy.getHeart() <= 0:
 		pokemonEnemy.setHeart(0)
 		won()
-
+	
+	if pokemonPlayer.getHeart() <= 0:
+		pokemonPlayer.setHeart(0)
+		lose() 
 
 func keyInput():
 	if Input.is_physical_key_pressed(KEY_Z):
@@ -68,13 +86,12 @@ func keyInput():
 		pass
 	if Input.is_physical_key_pressed(KEY_S):
 		pass
-	if Input.is_physical_key_pressed(KEY_Q):
-		selectQuit()
 	
 	if canSelect:
 		if Input.is_physical_key_pressed(KEY_ENTER):
 			if numberSelect == 0 or numberSelect == 1 or numberSelect == 2:
 				playerAttack()
+				canAttack = false
 			elif numberSelect == 3:
 				pass
 			elif numberSelect == 4:
@@ -86,6 +103,29 @@ func keyInput():
 		if Input.is_physical_key_pressed(KEY_ESCAPE):
 			$Panel/InfoCombat/OptionInfo.visible = false
 			canSelect = false
+
+func AIPokemon():
+	var PokemonSkill = levelRandom.randi_range(0, 2)
+	if PokemonSkill == 0:
+		animPoke.play("EnemyAttack")
+		$AudioAttackEffect.play()
+		pokemonPlayer.addDamage(pokemonEnemy.normalAttack(), pokemonEnemy.getType())
+	elif PokemonSkill == 1:
+		animPoke.play("EnemyAttack")
+		$AudioAttackEffect.play()
+		pokemonPlayer.addDamage(pokemonEnemy.skill1(pokemonPlayer), pokemonEnemy.skill1Type())
+	elif PokemonSkill == 2:
+		animPoke.play("EnemyBuff")
+		$AudioBuffEffect.play()
+		pokemonEnemy.skill2()
+	
+	canAttack = true
+
+func _on_timer_attack_taget_timeout():
+	AIPokemon()
+	countRoundCombat += 1
+	print(countRoundCombat)
+	timerAttackTaget.paused = true
 
 func selectAttack(index: int):
 	canSelect = true
@@ -101,7 +141,6 @@ func selectAttack(index: int):
 		$Panel/InfoCombat/OptionInfo/Name.text = pokemonPlayer.skill2Name()
 		$Panel/InfoCombat/OptionInfo/Info.text = pokemonPlayer.skill2Info()
 
-
 func playerAttack():
 	if numberSelect == 0:
 		animPoke.play("PlayerAttack")
@@ -110,7 +149,7 @@ func playerAttack():
 	elif numberSelect == 1:
 		animPoke.play("PlayerAttack")
 		$AudioAttackEffect.play()
-		pokemonEnemy.addDamage(pokemonPlayer.skill1(), pokemonPlayer.skill1Type())
+		pokemonEnemy.addDamage(pokemonPlayer.skill1(pokemonEnemy), pokemonPlayer.skill1Type())
 	elif numberSelect == 2:
 		animPoke.play("PlayerBuff")
 		$AudioBuffEffect.play()
@@ -125,13 +164,21 @@ func selectQuit():
 
 func won():
 	animPoke.play("Won")
+	$WonPanel/Label.text = "Won"
+	$AudioCombat.stop()
+	await get_tree().create_timer(1).timeout
+	giveUp()
+
+func lose():
+	animPoke.play("Lose")
+	$WonPanel/Label.text = "Lose"
 	$AudioCombat.stop()
 	await get_tree().create_timer(1).timeout
 	giveUp()
 
 func giveUp():
 	get_tree().paused = false
-	Global.wonPokemon = true
+	Global.endCombat = true
 	queue_free()
 
 #Button
@@ -158,6 +205,7 @@ func _on_quit_pressed():
 func _on_yes_pressed():
 	if numberSelect == 0 or numberSelect == 1 or numberSelect == 2:
 		playerAttack()
+		canAttack = false
 	elif numberSelect == 3:
 		pass
 	elif numberSelect == 4:
@@ -181,7 +229,7 @@ func initEnemyPokemon():
 		pokemonEnemy = Fushigidane.new(pokemonEnemyLevel)
 		$EnemyPokemon.texture = imgPokemon9
 	elif pokemonID == 10:
-		pokemonEnemy = Hirotaghe.new(pokemonEnemyLevel)
+		pokemonEnemy = Hitotaghe.new(pokemonEnemyLevel)
 		$EnemyPokemon.texture = imgPokemon10
 	elif pokemonID == 11:
 		pokemonEnemy = Zenigame.new(pokemonEnemyLevel)
@@ -212,17 +260,34 @@ func initPlayerPokemon():
 	realEnergyPlayer = pokemonPlayer.getEnergy()
 	realAttackDamagePlayer = pokemonPlayer.getAttackDamage()
 	realDefensePlayer = pokemonPlayer.getDefense()
+	
+	$Panel/OptionBox/Skill2.text = "[ X ] | " + pokemonPlayer.skill1Name()
+	$Panel/OptionBox/Skill3.text = "[ C ] | " + pokemonPlayer.skill2Name()
 
 func enemyPokemonInfo():
 	$InfoEnemy/Name.text = pokemonEnemy.getName()
 	$InfoEnemy/HP.text = "HP: " + str(pokemonEnemy.getHeart()) + "/" + str(realHeartEnemy)
 	$InfoEnemy/MP.text = "MP: " + str(pokemonEnemy.getEnergy()) + "/" + str(realEnergyEnemy)
 	$Panel/InfoCombat/Enemy/EnemyName.text = "Tên: " + pokemonEnemy.getName() + " - Cấp độ: " + str(pokemonEnemyLevel) + " - Hệ: " + str(pokemonEnemy.getTypeName())
-	#$Panel/InfoCombat/Enemy/EnemyInfo.text = "Hiệu ứng: Bỏng, Chóng"
+	$Panel/InfoCombat/Enemy/EnemyInfo.text = "Sát thương:  " + str(pokemonEnemy.getAttackDamage()) +"   
+												Giáp:              " + str(pokemonEnemy.getDefense())
 
 func playerPokemonInfo():
 	$InfoPlayer/Name.text = pokemonPlayer.getName()
 	$InfoPlayer/HP.text = "HP: " + str(pokemonPlayer.getHeart()) + "/" + str(realHeartPlayer)
 	$InfoPlayer/MP.text = "MP: " + str(pokemonPlayer.getEnergy()) + "/" + str(realEnergyPlayer)
 	$Panel/InfoCombat/Player/PlayerName.text = "Tên: " + pokemonPlayer.getName() + " - Cấp độ: " + str(Global.pokemonLevel) + " - Hệ: " + str(pokemonPlayer.getTypeName())
-	#$Panel/InfoCombat/Player/PlayerInfo.text = "Hiệu ứng: Bỏng, Chóng"
+	$Panel/InfoCombat/Player/PlayerInfo.text = "Sát thương:  " + str(pokemonPlayer.getAttackDamage()) +"   
+												Giáp:              " + str(pokemonPlayer.getDefense())
+
+func _on_timer_energy_count_timeout():
+	if pokemonEnemy.getEnergy() < realEnergyEnemy:
+		pokemonEnemy.addBuffEnergy(5)
+		if pokemonEnemy.getEnergy() > realEnergyEnemy:
+			pokemonEnemy.setEnergy(realEnergyEnemy)
+	
+	if pokemonPlayer.getEnergy() < realEnergyPlayer:
+		pokemonPlayer.addBuffEnergy(5)
+		if pokemonPlayer.getEnergy() > realEnergyPlayer:
+			pokemonPlayer.setEnergy(realEnergyPlayer)
+	

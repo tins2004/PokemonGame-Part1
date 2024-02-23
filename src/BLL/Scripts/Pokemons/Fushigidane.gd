@@ -17,33 +17,45 @@ func _init(Level: int):
 		attackDamage = 60 + LEVELUP2
 		defense = 70 + LEVELUP2
 	else:
-		heart = (80 * Level) / 2
-		energy = (50 * Level) / 2
-		attackDamage = (60 * Level) / 2
-		defense = (70 * Level) / 2
+		heart = (80 * Level) * 2/3
+		energy = (50 * Level) * 2/3
+		attackDamage = (60 * Level) * 2/3
+		defense = (70 * Level) * 2/3
 
 
-func skill1() -> int:
-	return 10
+
+func skill1(enemy: Pokemon) -> int:
+	if energy < 40:
+		return 0
+	
+	reduceEnergy(40)
+	enemy.reduceDefense(0.05)
+	return (attackDamage)
 
 func skill1Type() -> int:
-	return 0
+	return 1
 
 func skill1Name() -> String:
-	return "Skill 1"
+	return "Roi mây"
 
 func skill1Info() -> String:
-	return "?????
-			Gây: 10 sát thương
-			Tiêu hao: 50 năng lượng."
+	return "Đánh roi liên tục vào đối phương.
+			Sát thương: " + str(attackDamage) + "
+			Năng lượng: 40
+			Giảm 5% giáp kẻ thù"
 
 func skill2():
-	addBuffHeart(10)
+	if energy < 50:
+		return 0
+	
+	addBuffHeart(50)
+	addBuffEnergy(50)
 
 func skill2Name() -> String:
-	return "Skill 2"
+	return "Bóng nước"
 
 func skill2Info() -> String:
-	return "?????
-			Hồi: 10 máu
-			Tiêu hao: 50 năng lượng."
+	return "Fushigidane tự hồi phục
+			bằng năng lượng thiên nhiên.
+			Không tiêu hao năng lượng
+			Hồi 50 máu, 50 năng lượng"

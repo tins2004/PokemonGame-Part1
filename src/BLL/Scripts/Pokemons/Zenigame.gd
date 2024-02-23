@@ -17,33 +17,45 @@ func _init(Level: int):
 		attackDamage = 60 + LEVELUP2
 		defense = 70 + LEVELUP2
 	else:
-		heart = (90 * Level) / 2
-		energy = (50 * Level) / 2
-		attackDamage = (50 * Level) / 2
-		defense = (70 * Level) / 2
+		heart = (90 * Level) * 2/3
+		energy = (50 * Level) * 2/3
+		attackDamage = (50 * Level) * 2/3
+		defense = (70 * Level) * 2/3
 
 
-func skill1() -> int:
-	return 10
+func skill1(enemy: Pokemon) -> int:
+	if energy < 30:
+		return 0
+	
+	reduceEnergy(30)
+	enemy.reduceEnergyFloat(0.12)
+	return (attackDamage)
 
 func skill1Type() -> int:
-	return 0
+	return 3
 
 func skill1Name() -> String:
-	return "Skill 1"
+	return "Súng nước"
 
 func skill1Info() -> String:
-	return "?????
-			Gây: 10 sát thương
-			Tiêu hao: 50 năng lượng."
+	return "Bắng tia nước áp lực 
+			lớn vào kẻ thù.
+			Sát thương: " + str(attackDamage) + "
+			Năng lượng: 30
+			Giảm 12% năng lượng kẻ thù"
 
 func skill2():
-	addBuffHeart(10)
+	if energy < 50:
+		return 0
+	
+	reduceEnergy(50)
+	addBuffDefense(0.07)
 
 func skill2Name() -> String:
-	return "Skill 2"
+	return "Bóng nước"
 
 func skill2Info() -> String:
-	return "?????
-			Hồi: 10 máu
-			Tiêu hao: 50 năng lượng."
+	return "Zenigame tạo ra bong bóng 
+			nước bao quanh cơ thể.
+			Năng lượng: 50
+			Tăng 7% giáp"

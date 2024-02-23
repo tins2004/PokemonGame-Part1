@@ -9,7 +9,7 @@ var timeCanMeetPokemon = RandomNumberGenerator.new()
 
 
 func _process(delta):
-	if canFindPokemon:
+	if canFindPokemon and Global.isWalking:
 		findPokemon()
 
 func findPokemon():
@@ -23,7 +23,7 @@ func findPokemon():
 func _on_body_entered(body):
 	if(body.name == "Player"):
 		timer.start(timeCanMeetPokemon.randi_range(3, 10))
-		canFindPokemon = true
+		canFindPokemon = true 
 
 func _on_body_exited(body):
 	if(body.name == "Player"):

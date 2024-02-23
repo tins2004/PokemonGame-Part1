@@ -1,0 +1,781 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6ofnmavvautg"]
+
+[ext_resource type="Texture2D" uid="uid://ckow3jnmsekhf" path="res://img/Background/WhiteBackground.png" id="1_18rqh"]
+[ext_resource type="Script" path="res://src/GUI/Scripts/BackpackScene.gd" id="1_tpd20"]
+[ext_resource type="Texture2D" uid="uid://yaagavrbellw" path="res://img/Pokemons/PokeBall.png" id="2_crv5c"]
+[ext_resource type="Texture2D" uid="uid://cchfsreo7jokl" path="res://img/Pokemons/8.jpg" id="4_i4hqj"]
+[ext_resource type="Texture2D" uid="uid://6c1611h8fp80" path="res://img/Background/MBBankQR.JPG" id="5_glmgt"]
+[ext_resource type="Texture2D" uid="uid://5uno3eyawcxr" path="res://img/Background/MomoQR.PNG" id="6_6jjgn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tt032"]
+font_size = 20
+font_color = Color(1, 0.996078, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ii8ki"]
+font_size = 20
+
+[node name="BackpackScene" type="CanvasLayer"]
+script = ExtResource("1_tpd20")
+
+[node name="WhiteBackground" type="Sprite2D" parent="."]
+position = Vector2(539, 357)
+scale = Vector2(3.68667, 4.44048)
+texture = ExtResource("1_18rqh")
+
+[node name="MenuOption" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.007
+anchor_top = 0.011
+anchor_right = 0.133
+anchor_bottom = 0.989
+offset_left = 0.44
+offset_top = 0.0799994
+offset_right = 4.36
+offset_bottom = -0.0800171
+grow_vertical = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="HanhTrangButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 28.0
+offset_bottom = 28.08
+grow_horizontal = 2
+text = "[ Z ] | Hành trang"
+alignment = 0
+
+[node name="PokemonsButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 110.0
+offset_bottom = 110.08
+grow_horizontal = 2
+text = "[ X ] | Pokemons"
+alignment = 0
+
+[node name="BanDoButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 191.0
+offset_bottom = 191.08
+grow_horizontal = 2
+text = "[ C ] | Bản đồ"
+alignment = 0
+
+[node name="HuongDanButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 273.0
+offset_bottom = 273.08
+grow_horizontal = 2
+text = "[ A ] | Hướng dẫn"
+alignment = 0
+
+[node name="CaiDatButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 357.0
+offset_bottom = 357.08
+grow_horizontal = 2
+text = "[ S ] | Cài đặt"
+alignment = 0
+
+[node name="DongButton" type="Button" parent="MenuOption"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.086
+offset_top = 632.0
+offset_bottom = 632.08
+grow_horizontal = 2
+text = "[ Q ] | Đóng"
+alignment = 0
+
+[node name="Xu" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.051
+anchor_top = 0.044
+anchor_right = 0.436
+anchor_bottom = 0.089
+offset_left = -47.08
+offset_top = 544.32
+offset_right = -326.88
+offset_bottom = 559.92
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Xu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.75
+offset_left = 7.0
+offset_bottom = 9.0
+text = "Xu: 0"
+vertical_alignment = 1
+
+[node name="Nạp tiền" type="Button" parent="Xu"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 39.0
+text = "+"
+
+[node name="HanhTrangMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.76001
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Slot1" type="Panel" parent="HanhTrangMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.178
+anchor_right = 0.186
+anchor_bottom = 0.344
+offset_left = -17.728
+offset_top = -93.312
+offset_right = -13.948
+offset_bottom = -92.832
+metadata/_edit_group_ = true
+
+[node name="PokeBall" type="Sprite2D" parent="HanhTrangMenu/Slot1"]
+position = Vector2(58.3906, 63.2577)
+scale = Vector2(0.244234, 0.244234)
+texture = ExtResource("2_crv5c")
+
+[node name="Name" type="Label" parent="HanhTrangMenu/Slot1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.667
+anchor_right = 2.842
+anchor_bottom = 0.2
+offset_left = -48.04
+offset_right = 2.95996
+offset_bottom = 51.0
+text = "Quả cầu Pokemon
+Dùng thu phục Pokemon
+ yếu máu"
+
+[node name="Count" type="Label" parent="HanhTrangMenu/Slot1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.667
+anchor_top = 0.333
+anchor_right = 2.467
+anchor_bottom = 0.525
+offset_left = -48.04
+offset_top = 56.04
+offset_right = -45.04
+offset_bottom = 56.0
+text = "Số lượng: ???"
+
+[node name="Slot2" type="Panel" parent="HanhTrangMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.056
+anchor_top = 0.178
+anchor_right = 0.186
+anchor_bottom = 0.344
+offset_left = -17.728
+offset_top = 58.688
+offset_right = -13.948
+offset_bottom = 59.168
+metadata/_edit_group_ = true
+
+[node name="Name" type="Label" parent="HanhTrangMenu/Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.667
+anchor_right = 2.842
+anchor_bottom = 0.2
+offset_left = -48.04
+offset_right = 2.95996
+offset_bottom = 51.0
+text = "Tên vật phẩm: ???
+Thông tin vật phẩm: ???"
+
+[node name="Count" type="Label" parent="HanhTrangMenu/Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.667
+anchor_top = 0.333
+anchor_right = 2.467
+anchor_bottom = 0.525
+offset_left = -48.04
+offset_top = 56.04
+offset_right = -45.04
+offset_bottom = 56.0
+text = "Số lượng: ???"
+
+[node name="PokemonsMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Pokemon1" type="Panel" parent="PokemonsMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.08
+anchor_right = 0.946
+anchor_bottom = 0.261
+offset_left = 0.0059967
+offset_top = 23.68
+offset_right = -0.156006
+offset_bottom = 24.256
+metadata/_edit_group_ = true
+
+[node name="Img" type="Sprite2D" parent="PokemonsMenu/Pokemon1"]
+position = Vector2(64, 64)
+scale = Vector2(2.45, 2.45)
+texture = ExtResource("4_i4hqj")
+
+[node name="Name" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 0.384003
+offset_right = -0.056015
+offset_bottom = -0.0400009
+text = "Pikachu"
+
+[node name="Type" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.375
+anchor_right = 0.273
+anchor_bottom = 0.555
+offset_left = 0.384003
+offset_right = 0.335999
+offset_bottom = -0.0400009
+text = "Hệ: Điện"
+
+[node name="Level" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.625
+anchor_right = 0.273
+anchor_bottom = 0.805
+offset_left = 0.384003
+offset_top = 5.0
+offset_right = 0.335999
+offset_bottom = 4.95999
+text = "Cấp: 10"
+
+[node name="Heart" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_right = 111.944
+offset_bottom = -0.0400009
+text = "Máu:              500/500"
+
+[node name="Energy" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_top = 32.0
+offset_right = 154.944
+offset_bottom = 31.96
+text = "Năng lượng: 500/500"
+
+[node name="AttackDamage" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_right = 440.944
+offset_bottom = -0.0400009
+text = "Sát thương gốc:              10"
+
+[node name="Defense" type="Label" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_top = 32.0
+offset_right = 440.944
+offset_bottom = 31.96
+text = "Phòng thủ gốc:                10"
+
+[node name="LevelUp" type="Button" parent="PokemonsMenu/Pokemon1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.625
+anchor_right = 0.516
+anchor_bottom = 0.867
+offset_left = -3.744
+offset_right = -4.28802
+offset_bottom = 0.0239944
+text = "Nâng cấp: 100 xu"
+
+[node name="Pokemon2" type="Panel" parent="PokemonsMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.08
+anchor_right = 0.946
+anchor_bottom = 0.261
+offset_left = 0.0059967
+offset_top = 223.68
+offset_right = -0.156006
+offset_bottom = 224.256
+metadata/_edit_group_ = true
+
+[node name="Img" type="Sprite2D" parent="PokemonsMenu/Pokemon2"]
+position = Vector2(64, 64)
+scale = Vector2(2.45, 2.45)
+texture = ExtResource("4_i4hqj")
+
+[node name="Name" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 0.384003
+offset_right = -0.056015
+offset_bottom = -0.0400009
+text = "Pikachu"
+
+[node name="Type" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.375
+anchor_right = 0.273
+anchor_bottom = 0.555
+offset_left = 0.384003
+offset_right = 0.335999
+offset_bottom = -0.0400009
+text = "Hệ: Điện"
+
+[node name="Level" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.625
+anchor_right = 0.273
+anchor_bottom = 0.805
+offset_left = 0.384003
+offset_top = 5.0
+offset_right = 0.335999
+offset_bottom = 4.95999
+text = "Cấp: 10"
+
+[node name="Heart" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_right = 111.944
+offset_bottom = -0.0400009
+text = "Máu:              500/500"
+
+[node name="Energy" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_top = 32.0
+offset_right = 154.944
+offset_bottom = 31.96
+text = "Năng lượng: 500/500"
+
+[node name="AttackDamage" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_right = 440.944
+offset_bottom = -0.0400009
+text = "Sát thương gốc:              10"
+
+[node name="Defense" type="Label" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_top = 32.0
+offset_right = 440.944
+offset_bottom = 31.96
+text = "Phòng thủ gốc:                10"
+
+[node name="LevelUp" type="Button" parent="PokemonsMenu/Pokemon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.625
+anchor_right = 0.516
+anchor_bottom = 0.867
+offset_left = -3.744
+offset_right = -4.28802
+offset_bottom = 0.0239944
+text = "Nâng cấp: 100 xu"
+
+[node name="Pokemon3" type="Panel" parent="PokemonsMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.08
+anchor_right = 0.946
+anchor_bottom = 0.261
+offset_left = 0.0059967
+offset_top = 423.68
+offset_right = -0.156006
+offset_bottom = 424.256
+metadata/_edit_group_ = true
+
+[node name="Img" type="Sprite2D" parent="PokemonsMenu/Pokemon3"]
+position = Vector2(64, 64)
+scale = Vector2(2.45, 2.45)
+texture = ExtResource("4_i4hqj")
+
+[node name="Name" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 0.384003
+offset_right = -0.056015
+offset_bottom = -0.0400009
+text = "Pikachu"
+
+[node name="Type" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.375
+anchor_right = 0.273
+anchor_bottom = 0.555
+offset_left = 0.384003
+offset_right = 0.335999
+offset_bottom = -0.0400009
+text = "Hệ: Điện"
+
+[node name="Level" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.625
+anchor_right = 0.273
+anchor_bottom = 0.805
+offset_left = 0.384003
+offset_top = 5.0
+offset_right = 0.335999
+offset_bottom = 4.95999
+text = "Cấp: 10"
+
+[node name="Heart" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_right = 111.944
+offset_bottom = -0.0400009
+text = "Máu:              500/500"
+
+[node name="Energy" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 112.384
+offset_top = 32.0
+offset_right = 154.944
+offset_bottom = 31.96
+text = "Năng lượng: 500/500"
+
+[node name="AttackDamage" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_right = 440.944
+offset_bottom = -0.0400009
+text = "Sát thương gốc:              10"
+
+[node name="Defense" type="Label" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.125
+anchor_right = 0.267
+anchor_bottom = 0.305
+offset_left = 304.384
+offset_top = 32.0
+offset_right = 440.944
+offset_bottom = 31.96
+text = "Phòng thủ gốc:                10"
+
+[node name="LevelUp" type="Button" parent="PokemonsMenu/Pokemon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.625
+anchor_right = 0.516
+anchor_bottom = 0.867
+offset_left = -3.744
+offset_right = -4.28802
+offset_bottom = 0.0239944
+text = "Nâng cấp: 100 xu"
+
+[node name="BanDoMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="BanDoMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.074
+anchor_right = 0.542
+anchor_bottom = 0.405
+offset_left = 231.68
+offset_top = 218.904
+offset_right = 231.788
+offset_bottom = 218.88
+text = "Chưa có vẽ nhìn cc"
+
+[node name="HuongDanMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HuongDanMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.424
+anchor_bottom = 0.339
+offset_left = 266.0
+offset_top = 178.0
+offset_right = 266.336
+offset_bottom = 178.344
+text = "Chơi game mà đọc hướng dẫn
+GÀAAAAAAAAAAAAAAAAAAAA"
+
+[node name="CaiDatMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="FullScreenToggled" type="CheckButton" parent="CaiDatMenu"]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 240.0
+offset_right = 530.0
+offset_bottom = 264.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CaiDatMenu/FullScreenToggled"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -16.0
+offset_right = -30.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Toàn màn hình:"
+label_settings = SubResource("LabelSettings_tt032")
+
+[node name="VolumeSlider" type="HSlider" parent="CaiDatMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432
+anchor_top = 0.692
+anchor_right = 0.589
+anchor_bottom = 0.724
+offset_left = -24.752
+offset_top = -183.168
+offset_right = -25.3121
+offset_bottom = -183.208
+min_value = -10.0
+max_value = 3.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CaiDatMenu/VolumeSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -44.5
+offset_right = 48.5
+offset_bottom = -15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Âm thanh"
+label_settings = SubResource("LabelSettings_tt032")
+
+[node name="QuitButton" type="Button" parent="CaiDatMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_right = 57.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Lưu và đóng"
+
+[node name="NapTienMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.172
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="NapTienMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.068
+anchor_right = 0.484
+anchor_bottom = 0.108
+offset_left = -0.0979996
+offset_top = 0.127998
+offset_right = 0.175964
+offset_bottom = -0.0320053
+text = "Quét mã QR: Đây là quy luật chiến thắng"
+label_settings = SubResource("LabelSettings_ii8ki")
+
+[node name="MbBankQr" type="Sprite2D" parent="NapTienMenu"]
+position = Vector2(686, 352)
+scale = Vector2(0.318438, 0.318438)
+texture = ExtResource("5_glmgt")
+
+[node name="MomoQr" type="Sprite2D" parent="NapTienMenu"]
+position = Vector2(243, 416)
+scale = Vector2(0.391304, 0.391304)
+texture = ExtResource("6_6jjgn")
+
+[connection signal="pressed" from="MenuOption/HanhTrangButton" to="." method="_on_hanh_trang_button_pressed"]
+[connection signal="pressed" from="MenuOption/PokemonsButton" to="." method="_on_pokemons_button_pressed"]
+[connection signal="pressed" from="MenuOption/BanDoButton" to="." method="_on_ban_do_button_pressed"]
+[connection signal="pressed" from="MenuOption/HuongDanButton" to="." method="_on_huong_dan_button_pressed"]
+[connection signal="pressed" from="MenuOption/CaiDatButton" to="." method="_on_cai_dat_button_pressed"]
+[connection signal="pressed" from="MenuOption/DongButton" to="." method="_on_dong_button_pressed"]
+[connection signal="pressed" from="Xu/Nạp tiền" to="." method="_on_nạp_tiền_pressed"]
+[connection signal="toggled" from="CaiDatMenu/FullScreenToggled" to="." method="_on_full_screen_toggled_toggled"]
+[connection signal="value_changed" from="CaiDatMenu/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="CaiDatMenu/QuitButton" to="." method="_on_quit_button_pressed"]
