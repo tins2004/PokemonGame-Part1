@@ -3,16 +3,18 @@ extends CanvasLayer
 @onready var animPoke = $AnimationPlayer
 @onready var timer = $Timer
 @onready var timerAttackTaget = $TimerAttackTaget
+@onready var timerAttackTagetForPlayer = $TimerAttackTagetForPlayer
 
 var canSelect = false
 var numberSelect = 0
 var canAttack = true
 var countRoundCombat = 1
+var isPokemonIndex = 0
 
-var pokemonPlayer
+var pokemonPlayer = Global.pokemon1
 var pokemonEnemy
 var randomModule = RandomNumberGenerator.new()
-var levelRandom = RandomNumberGenerator.new()
+var ennemyID = 0
 var pokemonEnemyLevel = randomModule.randi_range(1, 5)
 
 var realHeartEnemy
@@ -44,12 +46,15 @@ var imgPokemon15 = preload("res://img/Pokemons/15.jpg")
 
 func _ready():
 	initEnemyPokemon()
-	initPlayerPokemon()
+	initPlayerPokemon(0) #Picachu
+	pokemonPlayer.setHeart(Global.pokemon1CurrentHeart)
 	
 	$Panel/InfoCombat/OptionInfo.visible = false
 	$AudioCombat.play()
 	
+	$TimerCloseCombat.paused = true
 	timerAttackTaget.paused = true
+	timerAttackTagetForPlayer.paused = true
 
 func _process(delta):
 	playerPokemonInfo()
@@ -71,41 +76,68 @@ func _process(delta):
 		pokemonEnemy.setHeart(0)
 		won()
 	
-	if pokemonPlayer.getHeart() <= 0:
-		pokemonPlayer.setHeart(0)
-		lose() 
+	if pokemonPlayer.getHeart() <= 1:
+		pokemonPlayer.setHeart(1)
+		lose()
 
 func keyInput():
 	if Input.is_physical_key_pressed(KEY_Z):
-		selectAttack(0)
+		_on_skill_1_pressed()
 	if Input.is_physical_key_pressed(KEY_X):
-		selectAttack(1)
+		_on_skill_2_pressed()
 	if Input.is_physical_key_pressed(KEY_C):
-		selectAttack(2)
+		_on_skill_3_pressed()
 	if Input.is_physical_key_pressed(KEY_A):
-		pass
+		_on_change_pokemon_pressed()
 	if Input.is_physical_key_pressed(KEY_S):
-		pass
+		_on_thu_phuc_pressed()
 	
 	if canSelect:
 		if Input.is_physical_key_pressed(KEY_ENTER):
-			if numberSelect == 0 or numberSelect == 1 or numberSelect == 2:
-				playerAttack()
-				canAttack = false
-			elif numberSelect == 3:
-				pass
-			elif numberSelect == 4:
-				pass
-			elif numberSelect == 5:
-				giveUp()
-			$Panel/InfoCombat/OptionInfo.visible = false
-			canSelect = false
+			_on_yes_pressed()
 		if Input.is_physical_key_pressed(KEY_ESCAPE):
-			$Panel/InfoCombat/OptionInfo.visible = false
-			canSelect = false
+			_on_no_pressed()
 
+#Button
+func _on_skill_1_pressed():
+	selectAttack(0)
+
+func _on_skill_2_pressed():
+	selectAttack(1)
+
+func _on_skill_3_pressed():
+	selectAttack(2)
+
+func _on_change_pokemon_pressed():
+	setHeartPlayerPokemon()
+	changePokemon()
+
+func _on_thu_phuc_pressed():
+	thuPhucMenu()
+
+func _on_quit_pressed():
+	selectQuit()
+
+func _on_yes_pressed():
+	if numberSelect == 0 or numberSelect == 1 or numberSelect == 2:
+		playerAttack()
+		canAttack = false
+	elif numberSelect == 3:
+		change(Global.player.getNumberPokemon())
+	elif numberSelect == 4:
+		thuPhuc()
+	elif numberSelect == 5:
+		_on_timer_close_combat_timeout()
+	$Panel/InfoCombat/OptionInfo.visible = false
+	canSelect = false
+
+func _on_no_pressed():
+	$Panel/InfoCombat/OptionInfo.visible = false
+	canSelect = false
+
+#Pokemon Combat
 func AIPokemon():
-	var PokemonSkill = levelRandom.randi_range(0, 2)
+	var PokemonSkill = randomModule.randi_range(0, 2)
 	if PokemonSkill == 0:
 		animPoke.play("EnemyAttack")
 		$AudioAttackEffect.play()
@@ -118,14 +150,17 @@ func AIPokemon():
 		animPoke.play("EnemyBuff")
 		$AudioBuffEffect.play()
 		pokemonEnemy.skill2()
-	
-	canAttack = true
 
 func _on_timer_attack_taget_timeout():
 	AIPokemon()
 	countRoundCombat += 1
 	print(countRoundCombat)
+	timerAttackTagetForPlayer.paused = false
 	timerAttackTaget.paused = true
+
+func _on_timer_attack_taget_for_player_timeout():
+	canAttack = true
+	timerAttackTagetForPlayer.paused = true
 
 func selectAttack(index: int):
 	canSelect = true
@@ -166,62 +201,39 @@ func won():
 	animPoke.play("Won")
 	$WonPanel/Label.text = "Won"
 	$AudioCombat.stop()
-	await get_tree().create_timer(1).timeout
-	giveUp()
+	$TimerCloseCombat.paused = false
 
 func lose():
-	animPoke.play("Lose")
+	animPoke.play("Won")
 	$WonPanel/Label.text = "Lose"
 	$AudioCombat.stop()
-	await get_tree().create_timer(1).timeout
-	giveUp()
+	$TimerCloseCombat.paused = false
 
-func giveUp():
+func _on_timer_close_combat_timeout():
+	setHeartPlayerPokemon()
 	get_tree().paused = false
 	Global.endCombat = true
 	queue_free()
 
-#Button
-func _on_skill_1_pressed():
-	selectAttack(0)
 
-func _on_skill_2_pressed():
-	selectAttack(1)
-
-func _on_skill_3_pressed():
-	selectAttack(2)
-
-func _on_change_pokemon_pressed():
-	pass # Replace with function body.
-
-
-func _on_thu_phuc_pressed():
-	pass # Replace with function body.
-
-
-func _on_quit_pressed():
-	selectQuit()
-
-func _on_yes_pressed():
-	if numberSelect == 0 or numberSelect == 1 or numberSelect == 2:
-		playerAttack()
-		canAttack = false
-	elif numberSelect == 3:
-		pass
-	elif numberSelect == 4:
-		pass
-	elif numberSelect == 5:
-		giveUp()
-	$Panel/InfoCombat/OptionInfo.visible = false
-	canSelect = false
-
-func _on_no_pressed():
-	$Panel/InfoCombat/OptionInfo.visible = false
-	canSelect = false
+func setHeartPlayerPokemon():
+	if pokemonPlayer.getHeart() >= realHeartPlayer:
+		return
+	
+	if isPokemonIndex == 0:
+		Global.pokemon1CurrentHeart = pokemonPlayer.getHeart()
+		Global.pokemon1.setHeart(realHeartPlayer)
+		print(Global.pokemon1CurrentHeart)
+	elif isPokemonIndex == 1:
+		Global.pokemon2CurrentHeart = pokemonPlayer.getHeart()
+		Global.pokemon2.setHeart(realHeartPlayer)
+	elif isPokemonIndex == 2:
+		Global.pokemon3CurrentHeart = pokemonPlayer.getHeart()
+		Global.pokemon3.setHeart(realHeartPlayer)
 
 #Pokemon Show
 func initEnemyPokemon():
-	var pokemonID = levelRandom.randi_range(8, 15)
+	var pokemonID = randomModule.randi_range(8, 15)
 	if pokemonID == 8:
 		pokemonEnemy = Picachu.new(pokemonEnemyLevel)
 		$EnemyPokemon.texture = imgPokemon8
@@ -247,14 +259,30 @@ func initEnemyPokemon():
 		pokemonEnemy = Iwark.new(pokemonEnemyLevel)
 		$EnemyPokemon.texture = imgPokemon15
 	
+	ennemyID = pokemonID - 8
+	
 	realHeartEnemy = pokemonEnemy.getHeart()
 	realEnergyEnemy = pokemonEnemy.getEnergy()
 	realAttackDamageEnemy = pokemonEnemy.getAttackDamage()
 	realDefenseEnemy = pokemonEnemy.getDefense()
 
-func initPlayerPokemon():
-	pokemonPlayer = Picachu.new(Global.pokemonLevel)
-	$PlayerPokemon.texture = imgPokemon0
+func initPlayerPokemon(pokemonID: int):
+	if pokemonID == 0:
+		$PlayerPokemon.texture = imgPokemon0
+	elif pokemonID == 1:
+		$PlayerPokemon.texture = imgPokemon1
+	elif pokemonID == 2:
+		$PlayerPokemon.texture = imgPokemon2
+	elif pokemonID == 3:
+		$PlayerPokemon.texture = imgPokemon3
+	elif pokemonID == 4:
+		$PlayerPokemon.texture = imgPokemon4
+	elif pokemonID == 5:
+		$PlayerPokemon.texture = imgPokemon5
+	elif pokemonID == 6:
+		$PlayerPokemon.texture = imgPokemon6
+	elif pokemonID == 7:
+		$PlayerPokemon.texture = imgPokemon7
 	
 	realHeartPlayer = pokemonPlayer.getHeart()
 	realEnergyPlayer = pokemonPlayer.getEnergy()
@@ -266,17 +294,17 @@ func initPlayerPokemon():
 
 func enemyPokemonInfo():
 	$InfoEnemy/Name.text = pokemonEnemy.getName()
-	$InfoEnemy/HP.text = "HP: " + str(pokemonEnemy.getHeart()) + "/" + str(realHeartEnemy)
-	$InfoEnemy/MP.text = "MP: " + str(pokemonEnemy.getEnergy()) + "/" + str(realEnergyEnemy)
+	$InfoEnemy/HP.text = "HP: " + str(pokemonEnemy.getHeart())
+	$InfoEnemy/MP.text = "MP: " + str(pokemonEnemy.getEnergy())
 	$Panel/InfoCombat/Enemy/EnemyName.text = "Tên: " + pokemonEnemy.getName() + " - Cấp độ: " + str(pokemonEnemyLevel) + " - Hệ: " + str(pokemonEnemy.getTypeName())
 	$Panel/InfoCombat/Enemy/EnemyInfo.text = "Sát thương:  " + str(pokemonEnemy.getAttackDamage()) +"   
 												Giáp:              " + str(pokemonEnemy.getDefense())
 
 func playerPokemonInfo():
 	$InfoPlayer/Name.text = pokemonPlayer.getName()
-	$InfoPlayer/HP.text = "HP: " + str(pokemonPlayer.getHeart()) + "/" + str(realHeartPlayer)
-	$InfoPlayer/MP.text = "MP: " + str(pokemonPlayer.getEnergy()) + "/" + str(realEnergyPlayer)
-	$Panel/InfoCombat/Player/PlayerName.text = "Tên: " + pokemonPlayer.getName() + " - Cấp độ: " + str(Global.pokemonLevel) + " - Hệ: " + str(pokemonPlayer.getTypeName())
+	$InfoPlayer/HP.text = "HP: " + str(pokemonPlayer.getHeart())
+	$InfoPlayer/MP.text = "MP: " + str(pokemonPlayer.getEnergy())
+	$Panel/InfoCombat/Player/PlayerName.text = "Tên: " + pokemonPlayer.getName() + " - Cấp độ: " + str(pokemonPlayer.getLevel()) + " - Hệ: " + str(pokemonPlayer.getTypeName())
 	$Panel/InfoCombat/Player/PlayerInfo.text = "Sát thương:  " + str(pokemonPlayer.getAttackDamage()) +"   
 												Giáp:              " + str(pokemonPlayer.getDefense())
 
@@ -291,3 +319,85 @@ func _on_timer_energy_count_timeout():
 		if pokemonPlayer.getEnergy() > realEnergyPlayer:
 			pokemonPlayer.setEnergy(realEnergyPlayer)
 	
+
+#Pokemon change
+func changePokemon():
+	canSelect = true
+	numberSelect = 3
+	$Panel/InfoCombat/OptionInfo.visible = true
+	$Panel/InfoCombat/OptionInfo/Name.text = "Chuyển đổi Pokemon"
+	$Panel/InfoCombat/OptionInfo/Info.text = "Bạn đang có " + str(Global.player.getNumberPokemon()) + " Pokemon"
+
+func change(numberPokemon: int):
+	if isPokemonIndex == 0:
+		if numberPokemon == 1:
+			return
+		
+		_on_ra_tran_2_pressed()
+	elif isPokemonIndex == 1:
+		if numberPokemon == 2:
+			_on_ra_tran_1_pressed()
+		else:
+			_on_ra_tran_3_pressed()
+	elif isPokemonIndex == 2:
+		_on_ra_tran_1_pressed()
+
+func _on_ra_tran_1_pressed():
+	isPokemonIndex = 0
+	pokemonPlayer = Global.pokemon1
+	pokemonPlayer.setHeart(Global.pokemon1CurrentHeart)
+	initPlayerPokemon(0) #Picachu
+
+func _on_ra_tran_2_pressed():
+	isPokemonIndex = 1
+	pokemonPlayer = Global.pokemon2
+	pokemonPlayer.setHeart(Global.pokemon2CurrentHeart)
+	initPlayerPokemon(Global.pokemon2ID)
+
+func _on_ra_tran_3_pressed():
+	isPokemonIndex = 2
+	pokemonPlayer = Global.pokemon3
+	pokemonPlayer.setHeart(Global.pokemon3CurrentHeart)
+	initPlayerPokemon(Global.pokemon3ID)
+
+
+#Thu phục
+func thuPhucMenu():
+	canSelect = true
+	numberSelect = 4
+	$Panel/InfoCombat/OptionInfo.visible = true
+	$Panel/InfoCombat/OptionInfo/Name.text = "Thu phục Pokemon"
+	$Panel/InfoCombat/OptionInfo/Info.text = "Ném ra quả cầu Pokemon để
+												thu phục Pokemon yếu máu.
+												Quả cầu Pokemon: " + str(Global.player.getPokeBall())
+
+func thuPhuc():
+	if Global.player.getPokeBall() < 1:
+		return
+	
+	animPoke.play("PokeBall")
+	Global.player.reducePokeBall(1)
+	
+	$TimerPokeBall.start()
+	$TimerPokeBall.paused = false
+
+func _on_timer_poke_ball_timeout():
+	var check = randomModule.randi_range(0,1)
+	print(check)
+	if check == 0:
+		$TimerPokeBall.paused = true
+		return
+	
+	if Global.player.getNumberPokemon() == 1:
+		Global.player.setNumberPokemon(2)
+		Global.pokemon2ID = ennemyID
+		Global.loadPokemon2(pokemonEnemyLevel, pokemonEnemy.getHeart())
+	elif Global.player.getNumberPokemon() == 2:
+		Global.player.setNumberPokemon(3)
+		Global.pokemon3ID = ennemyID
+		Global.loadPokemon3(pokemonEnemyLevel, pokemonEnemy.getHeart())
+	
+	_on_timer_close_combat_timeout()
+
+
+

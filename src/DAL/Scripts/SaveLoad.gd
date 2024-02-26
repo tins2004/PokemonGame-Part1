@@ -10,11 +10,11 @@ func saveData():
 			"fullscreen": Global.fullScreen,
 			"namePlayer" : Global.player.getName(),
 			"sexPlayer" : Global.player.getSex(),
-			"numberPokemon": Global.player.getNumberPokemon(),
-			"pokeBall": Global.player.getPokeBall(),
-			"money": Global.player.getMoney(),
-			"pikachuLevel": 5,
-			"pikachuCurrentHeart": (60 * 5) * 2/3,
+			"numberPokemon": 1,
+			"pokeBall": 0,
+			"money": 0,
+			"pikachuLevel": 3,
+			"pikachuCurrentHeart": (60 * 3) * 2/3,
 		}
 		
 		return save_data
@@ -93,19 +93,14 @@ func loadGame():
 		Global.player.setPokeBall(node_data["pokeBall"])
 		Global.player.setMoney(node_data["money"])
 		
-		Global.initPokemon()
-		
-		Global.pokemon1.setLevel(node_data["pikachuLevel"])
-		Global.pokemon1CurrentHeart = node_data["pikachuCurrentHeart"]
+		Global.loadPokemon1(node_data["pikachuLevel"], node_data["pikachuCurrentHeart"])
 		
 		if Global.player.getNumberPokemon() >= 2:
 			Global.pokemon2ID = node_data["pokemon2ID"]
-			Global.pokemon2.setLevel(node_data["pokemon2Level"])
-			Global.pokemon2CurrentHeart = node_data["pokemon2CurrentHeart"]
-			if Global.player.getNumberPokemon() >= 3:
-				Global.pokemon2ID = node_data["pokemon3ID"]
-				Global.pokemon2.setLevel(node_data["pokemon3Level"])
-				Global.pokemon2CurrentHeart = node_data["pokemon3CurrentHeart"]
+			Global.loadPokemon2(node_data["pokemon2Level"], node_data["pokemon2CurrentHeart"])
+			if Global.player.getNumberPokemon() == 3:
+				Global.pokemon3ID = node_data["pokemon3ID"]
+				Global.loadPokemon3(node_data["pokemon3Level"], node_data["pokemon3CurrentHeart"])
 
 func deleteFile():
 	DirAccess.remove_absolute(save_path)

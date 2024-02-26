@@ -3,8 +3,6 @@ extends Node
 
 @onready var player = Player.new()
 
-@onready var pokemonLevel = 2
-
 @onready var pokemon1
 @onready var pokemon1CurrentHeart = 1
 
@@ -43,46 +41,46 @@ func settingValue():
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func initPokemon():
-	pokemon1 = Picachu.new(pokemonLevel)
-	pokemon1CurrentHeart = pokemon1.getHeart()
+func loadPokemon1(Level: int, Heart: int):
+	pokemon1 = Picachu.new(Level)
+	pokemon1CurrentHeart = Heart
+
+func loadPokemon2(Level: int, Heart: int):
+	if pokemon2ID == 0:
+		pokemon2 = Picachu.new(Level)
+	elif pokemon2ID == 1:
+		pokemon2 = Fushigidane.new(Level)
+	elif pokemon2ID == 2:
+		pokemon2 = Hitotaghe.new(Level)
+	elif pokemon2ID == 3:
+		pokemon2 = Zenigame.new(Level)
+	elif pokemon2ID == 4:
+		pokemon2 = Arbo.new(Level)
+	elif pokemon2ID == 5:
+		pokemon2 = Dogars.new(Level)
+	elif pokemon2ID == 6:
+		pokemon2 = Isitsubute.new(Level)
+	elif pokemon2ID == 7:
+		pokemon2 = Iwark.new(Level)
 	
-	if player.getNumberPokemon() >= 2:
-		if pokemon2ID == 0:
-			pokemon2 = Picachu.new(pokemonLevel)
-		elif pokemon2ID == 1:
-			pokemon2 = Fushigidane.new(pokemonLevel)
-		elif pokemon2ID == 2:
-			pokemon2 = Hitotaghe.new(pokemonLevel)
-		elif pokemon2ID == 3:
-			pokemon2 = Zenigame.new(pokemonLevel)
-		elif pokemon2ID == 4:
-			pokemon2 = Arbo.new(pokemonLevel)
-		elif pokemon2ID == 5:
-			pokemon2 = Dogars.new(pokemonLevel)
-		elif pokemon2ID == 6:
-			pokemon2 = Isitsubute.new(pokemonLevel)
-		elif pokemon2ID == 7:
-			pokemon2 = Iwark.new(pokemonLevel)
-		
-		pokemon2CurrentHeart = pokemon2.getHeart()
-		
-		if player.getNumberPokemon() == 3:
-			if pokemon3ID == 0:
-				pokemon3 = Picachu.new(pokemonLevel)
-			elif pokemon3ID == 1:
-				pokemon3 = Fushigidane.new(pokemonLevel)
-			elif pokemon3ID == 2:
-				pokemon3 = Hitotaghe.new(pokemonLevel)
-			elif pokemon3ID == 3:
-				pokemon3 = Zenigame.new(pokemonLevel)
-			elif pokemon3ID == 4:
-				pokemon3 = Arbo.new(pokemonLevel)
-			elif pokemon3ID == 5:
-				pokemon3 = Dogars.new(pokemonLevel)
-			elif pokemon3ID == 6:
-				pokemon3 = Isitsubute.new(pokemonLevel)
-			elif pokemon3ID == 7:
-				pokemon3 = Iwark.new(pokemonLevel)
-			
-			pokemon3CurrentHeart = pokemon3.getHeart()
+	pokemon2CurrentHeart = Heart
+
+func loadPokemon3(Level: int, Heart: int):
+	if pokemon3ID == 0:
+		pokemon3 = Picachu.new(Level)
+	elif pokemon3ID == 1:
+		pokemon3 = Fushigidane.new(Level)
+	elif pokemon3ID == 2:
+		pokemon3 = Hitotaghe.new(Level)
+	elif pokemon3ID == 3:
+		pokemon3 = Zenigame.new(Level)
+	elif pokemon3ID == 4:
+		pokemon3 = Arbo.new(Level)
+	elif pokemon3ID == 5:
+		pokemon3 = Dogars.new(Level)
+	elif pokemon3ID == 6:
+		pokemon3 = Isitsubute.new(Level)
+	elif pokemon3ID == 7:
+		pokemon3 = Iwark.new(Level)
+	
+	pokemon3CurrentHeart = Heart

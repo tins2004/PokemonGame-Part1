@@ -229,7 +229,6 @@ offset_bottom = 56.0
 text = "Số lượng: ???"
 
 [node name="PokemonsMenu" type="Panel" parent="."]
-visible = false
 anchors_preset = -1
 anchor_left = 0.172
 anchor_right = 1.0
@@ -270,7 +269,7 @@ anchor_bottom = 0.305
 offset_left = 0.384003
 offset_right = -0.056015
 offset_bottom = -0.0400009
-text = "Pikachu"
+text = "Picachu"
 
 [node name="Type" type="Label" parent="PokemonsMenu/Pokemon1"]
 layout_mode = 1
@@ -634,17 +633,39 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="HuongDanMenu"]
+[node name="RichTextLabel" type="RichTextLabel" parent="HuongDanMenu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.424
-anchor_bottom = 0.339
-offset_left = 266.0
-offset_top = 178.0
-offset_right = 266.336
-offset_bottom = 178.344
-text = "Chơi game mà đọc hướng dẫn
-GÀAAAAAAAAAAAAAAAAAAAA"
+anchor_left = 0.016
+anchor_top = 0.023
+anchor_right = 0.991
+anchor_bottom = 0.977
+offset_left = 4.824
+offset_top = -0.192001
+offset_right = 4.97394
+offset_bottom = 0.191956
+grow_horizontal = 2
+grow_vertical = 2
+text = "#Tiền tệ.
+- Tiền xu: Tiền xu kiểm được khi đánh bại Pokemon hoặc bán Pokemon, tiền xu dùng để nâng cấp Pokemon và mua quả cầu Pokemon.
+
+#Pokemon
+- Tìm Pokemon: Pokemon được tìm thấy ngẫu nhiên khi đi dạo trong bụi cỏ.
+- Thu phục Pokemon: Dùng quả cầu Pokemon ném vào Pokemon muốn thu phục khi đã đạt ngưỡng máu thấp.
+- Kỹ năng Pokemon: Mỗi Pokemon gồm 1 kỹ năng đánh thường, 1 kỹ năng kèm theo hiệu ứng bất lợi cho kẻ thù, 1 kỹ năng gây lợi cho bản thân.
+- Chữa trị Pokemon: Khi chiến đấu kết thúc, Pokemon sẽ bị thương cần phải đến trung tâm y tế để chữa trị.
+- Khắc hệ: Mỗi Pokemon có những hệ khác nhau có thể gấp đôi sát thương, giảm một nữa sát thương hoặc không gây bất kỳ sát thương nào lên đối thủ.
+- Số liệu sát thương: Tổng sát thương = (Sát thương gốc * khả năng khắc hệ) - (Phòng thủ/2)
+
+#NPC
+- Mẹ Satoshi: Người dẫn truyện.
+- Tiến sĩ Okido: Giới thiệu trò chơi và cung cấp một số vật phẩm cần thiết cho người chơi.
+- Cảnh sát Junsa: Người dẫn truyện.
+- Y tá Joy: Quản lý trung tâm Pokemon.
+- Đội Hỏa Tiễn: Đối thủ trên hành trình khám phá.
+- Nhóc Samurai: Đối thủ trên hành trình khám phá.
+- Ông Muno: Người dẫn truyện.
+- Takeshi: Chủ hội quán, khi đánh thắng được nhân vật này bạn sẽ hoàn thành trò chơi."
 
 [node name="CaiDatMenu" type="Panel" parent="."]
 visible = false
@@ -776,6 +797,9 @@ texture = ExtResource("6_6jjgn")
 [connection signal="pressed" from="MenuOption/CaiDatButton" to="." method="_on_cai_dat_button_pressed"]
 [connection signal="pressed" from="MenuOption/DongButton" to="." method="_on_dong_button_pressed"]
 [connection signal="pressed" from="Xu/Nạp tiền" to="." method="_on_nạp_tiền_pressed"]
+[connection signal="pressed" from="PokemonsMenu/Pokemon1/LevelUp" to="." method="levelUpPokemon1"]
+[connection signal="pressed" from="PokemonsMenu/Pokemon2/LevelUp" to="." method="levelUpPokemon2"]
+[connection signal="pressed" from="PokemonsMenu/Pokemon3/LevelUp" to="." method="levelUpPokemon3"]
 [connection signal="toggled" from="CaiDatMenu/FullScreenToggled" to="." method="_on_full_screen_toggled_toggled"]
 [connection signal="value_changed" from="CaiDatMenu/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="CaiDatMenu/QuitButton" to="." method="_on_quit_button_pressed"]

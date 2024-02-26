@@ -77,7 +77,7 @@ func _on_name_edit_text_changed(new_text):
 	Global.player.setName(new_text)
 
 func _on_next_button_pressed():
-	SaveLoad.deleteFile()
+	Global.isFirstStartGame = true
 	
 	SaveLoad.saveGame()
 	SaveLoad.loadGame()

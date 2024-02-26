@@ -31,8 +31,20 @@ func getMoney() -> int:
 func setMoney(value: int):
 	money = value
 
+func receiveMoney(value: int):
+	money += value
+
+func deduction(value: int):
+	money -= value
+
 func getPokeBall() -> int:
 	return pokeBall
 
 func setPokeBall(value: int):
 	pokeBall = value
+
+func increasePokeBall(value: int):
+	pokeBall -= value
+
+func reducePokeBall(value: int):
+	pokeBall -= value

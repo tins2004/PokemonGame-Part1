@@ -9,7 +9,12 @@ var timeCanMeetPokemon = RandomNumberGenerator.new()
 
 
 func _process(delta):
-	if canFindPokemon and Global.isWalking:
+	if canFindPokemon:
+		if Global.isWalking:
+			timer.paused = false
+		else:
+			timer.paused = true
+		
 		findPokemon()
 
 func findPokemon():

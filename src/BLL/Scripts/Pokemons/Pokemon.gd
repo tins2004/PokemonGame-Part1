@@ -17,11 +17,11 @@ func setName(value: String):
 	namePoke = value
 
 func getLevel() -> int:
-	return defense
+	return level
 func setLevel(value: int):
 	if value < 1:
 		value = 1
-	defense = value
+	level = value
 
 func getType() -> int:
 	return type

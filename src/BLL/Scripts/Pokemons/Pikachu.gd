@@ -18,7 +18,7 @@ func _init(Level: int):
 		defense = 70 + LEVELUP2
 	else:
 		heart = (60 * Level) * 2/3
-		energy = (50 * Level) * 2/3
+		energy = (50 * Level) * 2/3 
 		attackDamage = (75 * Level) * 2/3
 		defense = (70 * Level) * 2/3
 

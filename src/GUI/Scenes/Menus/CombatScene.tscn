@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b25eykthavpca"]
+[gd_scene load_steps=22 format=3 uid="uid://b25eykthavpca"]
 
 [ext_resource type="Script" path="res://src/GUI/Scripts/CombatScene.gd" id="1_xvnaf"]
 [ext_resource type="Texture2D" uid="uid://ckow3jnmsekhf" path="res://img/Background/WhiteBackground.png" id="2_8ogsh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://eocvgujeu84h" path="res://img/Pokemons/7.jpg" id="4_hc2w6"]
 [ext_resource type="AudioStream" uid="uid://bnl0yhdlypqef" path="res://sound/Attack.mp3" id="6_vhjxb"]
 [ext_resource type="AudioStream" uid="uid://cmnxojcqcga6a" path="res://sound/Buff.mp3" id="7_r2u6b"]
+[ext_resource type="Texture2D" uid="uid://yaagavrbellw" path="res://img/Pokemons/PokeBall.png" id="9_j2mfb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_03ffu"]
 font_size = 30
@@ -132,6 +133,58 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_hhuvr"]
+resource_name = "PokeBall"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PokeBall:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(262, 777), Vector2(351, 510), Vector2(490, 291), Vector2(672, 204), Vector2(854, 188)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PokeBallBackground:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.027451, 0.52549, 1), Color(1, 1, 1, 1), Color(1, 0.027451, 0.52549, 1), Color(1, 1, 1, 1), Color(1, 0.027451, 0.52549, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PokeBallBackground:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PokeBall:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="Animation" id="Animation_arwtb"]
 length = 0.001
 tracks/0/type = "value"
@@ -194,6 +247,54 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PokeBall:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(262, 777)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PokeBallBackground:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("PokeBallBackground:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("PokeBall:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_n53iv"]
 resource_name = "Won"
@@ -216,6 +317,7 @@ _data = {
 "EnemyBuff": SubResource("Animation_o0x6i"),
 "PlayerAttack": SubResource("Animation_vr26j"),
 "PlayerBuff": SubResource("Animation_8x58p"),
+"PokeBall": SubResource("Animation_hhuvr"),
 "RESET": SubResource("Animation_arwtb"),
 "Won": SubResource("Animation_n53iv")
 }
@@ -541,13 +643,24 @@ libraries = {
 "": SubResource("AnimationLibrary_33bkb")
 }
 
+[node name="TimerCloseCombat" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="TimerAttackTaget" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
+
+[node name="TimerAttackTagetForPlayer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="TimerEnergyCount" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="TimerPokeBall" type="Timer" parent="."]
+wait_time = 1.1
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -576,6 +689,18 @@ label_settings = SubResource("LabelSettings_r3r50")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PokeBall" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(262, 777)
+scale = Vector2(0.193052, 0.193052)
+texture = ExtResource("9_j2mfb")
+
+[node name="PokeBallBackground" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(856, 192)
+scale = Vector2(1.06333, 1.89881)
+texture = ExtResource("2_8ogsh")
+
 [connection signal="pressed" from="Panel/InfoCombat/OptionInfo/Select/Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="Panel/InfoCombat/OptionInfo/Select/No" to="." method="_on_no_pressed"]
 [connection signal="pressed" from="Panel/OptionBox/Skill1" to="." method="_on_skill_1_pressed"]
@@ -584,5 +709,8 @@ vertical_alignment = 1
 [connection signal="pressed" from="Panel/OptionBox/ChangePokemon" to="." method="_on_change_pokemon_pressed"]
 [connection signal="pressed" from="Panel/OptionBox/ThuPhuc" to="." method="_on_thu_phuc_pressed"]
 [connection signal="pressed" from="Panel/OptionBox/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="TimerCloseCombat" to="." method="_on_timer_close_combat_timeout"]
 [connection signal="timeout" from="TimerAttackTaget" to="." method="_on_timer_attack_taget_timeout"]
+[connection signal="timeout" from="TimerAttackTagetForPlayer" to="." method="_on_timer_attack_taget_for_player_timeout"]
 [connection signal="timeout" from="TimerEnergyCount" to="." method="_on_timer_energy_count_timeout"]
+[connection signal="timeout" from="TimerPokeBall" to="." method="_on_timer_poke_ball_timeout"]
