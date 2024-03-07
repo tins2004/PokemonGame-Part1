@@ -1,0 +1,210 @@
+[gd_scene load_steps=8 format=3 uid="uid://db32jl16plh3j"]
+
+[ext_resource type="Script" path="res://src/GUI/Scripts/MainMenu.gd" id="1_p5pd2"]
+
+[sub_resource type="Animation" id="Animation_v12cf"]
+resource_name = "OpenStartMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 800), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kvi8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InitMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u7wu3"]
+resource_name = "CloseStartMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 800)]
+}
+
+[sub_resource type="Animation" id="Animation_66h8b"]
+resource_name = "CloseInitMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InitMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 800)]
+}
+
+[sub_resource type="Animation" id="Animation_o5xt7"]
+resource_name = "OpenInitMenu"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InitMenu:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 800), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7clwb"]
+_data = {
+"CloseInitMenu": SubResource("Animation_66h8b"),
+"CloseStartMenu": SubResource("Animation_u7wu3"),
+"OpenInitMenu": SubResource("Animation_o5xt7"),
+"OpenStartMenu": SubResource("Animation_v12cf"),
+"RESET": SubResource("Animation_kvi8x")
+}
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p5pd2")
+
+[node name="StartMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 800.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="NewGameButton" type="Button" parent="StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -15.5
+offset_right = 39.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Chơi mới"
+
+[node name="InitMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.000976563
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="MaleButton" type="Button" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.648148
+anchor_top = 0.241667
+anchor_right = 0.838889
+anchor_bottom = 0.691667
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="FemaleButton" type="Button" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.217593
+anchor_top = 0.2875
+anchor_right = 0.374074
+anchor_bottom = 0.611111
+offset_top = -4.0
+offset_right = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="NameEdit" type="LineEdit" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.432778
+anchor_top = 0.741333
+anchor_right = 0.565693
+anchor_bottom = 0.884722
+offset_left = -0.400024
+offset_top = 0.23999
+offset_right = 0.0512085
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Nhập tên"
+metadata/_edit_use_anchors_ = true
+
+[node name="InitBackButton" type="Button" parent="InitMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 57.0
+grow_vertical = 0
+size_flags_vertical = 4
+text = "Trở lại"
+
+[node name="AnimationScene" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7clwb")
+}
+
+[connection signal="pressed" from="StartMenu/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="InitMenu/InitBackButton" to="." method="_on_init_back_button_pressed"]

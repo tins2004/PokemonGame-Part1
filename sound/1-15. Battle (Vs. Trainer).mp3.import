@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bqqa4rs8m6mcs"
+path="res://.godot/imported/1-15. Battle (Vs. Trainer).mp3-d91de0815b281e1561dd8bd41ca6e560.mp3str"
+
+[deps]
+
+source_file="res://sound/1-15. Battle (Vs. Trainer).mp3"
+dest_files=["res://.godot/imported/1-15. Battle (Vs. Trainer).mp3-d91de0815b281e1561dd8bd41ca6e560.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

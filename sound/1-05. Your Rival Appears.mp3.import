@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ccahkbdf40d07"
+path="res://.godot/imported/1-05. Your Rival Appears.mp3-3f355329950c3a73293cffe2c9d6f9fc.mp3str"
+
+[deps]
+
+source_file="res://sound/1-05. Your Rival Appears.mp3"
+dest_files=["res://.godot/imported/1-05. Your Rival Appears.mp3-3f355329950c3a73293cffe2c9d6f9fc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
