@@ -19,6 +19,7 @@ extends Node
 @onready var endCombat = false
 @onready var isWalking = false
 
+@onready var inMap = 0
 @onready var volume = 0
 @onready var fullScreen = false
 

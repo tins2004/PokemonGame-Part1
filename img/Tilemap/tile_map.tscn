@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://i7w1yp5aqqgm"]
+[gd_scene load_steps=5 format=3 uid="uid://i7w1yp5aqqgm"]
 
-[ext_resource type="Texture2D" uid="uid://ckk80ct8i8ofp" path="res://img/Tilemap/First Asset pack.png" id="1_imgyk"]
-[ext_resource type="Texture2D" uid="uid://bbf77uhqaqnpm" path="res://img/Tilemap/town_map_2_by_mllessentials_ddo2ps4.png" id="2_cygxt"]
+[ext_resource type="Texture2D" uid="uid://dsghkbsbynv6q" path="res://img/Tilemap/First Asset pack.png" id="1_imgyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bonid"]
 texture = ExtResource("1_imgyk")
@@ -482,7 +481,6 @@ texture_region_size = Vector2i(12, 12)
 12:30/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_11lsx"]
-texture = ExtResource("2_cygxt")
 texture_region_size = Vector2i(12, 12)
 0:0/0 = 0
 1:0/0 = 0

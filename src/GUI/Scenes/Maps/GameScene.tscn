@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4e1qfrtflp8r"]
+[gd_scene load_steps=6 format=3 uid="uid://c4e1qfrtflp8r"]
 
 [ext_resource type="PackedScene" uid="uid://d4e8fd150gelf" path="res://src/GUI/Scenes/Humans/Player.tscn" id="1_ktbt8"]
 [ext_resource type="PackedScene" uid="uid://c7qp3ck6n1a6n" path="res://src/BLL/Scenes/PokemonPosition.tscn" id="2_n8fhp"]
 [ext_resource type="Texture2D" uid="uid://ckow3jnmsekhf" path="res://img/Background/WhiteBackground.png" id="3_eeq68"]
+[ext_resource type="PackedScene" uid="uid://cjsn0w3obsi1e" path="res://src/GUI/Scenes/Humans/NPCs.tscn" id="4_sla2l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8r8w"]
 size = Vector2(479.5, 535.5)
@@ -38,3 +39,6 @@ text = "Ấn Z hoặc Esc để mở backpack"
 
 [node name="Player" parent="." instance=ExtResource("1_ktbt8")]
 position = Vector2(257, 246)
+
+[node name="NPCs" parent="." instance=ExtResource("4_sla2l")]
+position = Vector2(306, 526)

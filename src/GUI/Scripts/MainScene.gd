@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var curSceneGame = "res://src/GUI/Scenes/Maps/GameScene.tscn"
+@onready var curSceneGame = "res://src/GUI/Scenes/Maps/Map1.tscn"
 
 @onready var animScene = $AnimationScene
 @onready var animSex = $InitMenu/AnimationSex

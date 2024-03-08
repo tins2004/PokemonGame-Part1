@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ccahkbdf40d07" path="res://sound/1-05. Your Rival Appears.mp3" id="6_m63os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unhfh"]
-size = Vector2(64, 64)
+size = Vector2(33, 47)
 
 [sub_resource type="Animation" id="Animation_p4fud"]
 resource_name = "Idle"
@@ -139,6 +139,7 @@ hframes = 4
 vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_unhfh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
