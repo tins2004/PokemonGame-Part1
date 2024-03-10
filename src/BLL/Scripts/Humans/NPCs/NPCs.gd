@@ -29,8 +29,8 @@ func _on_yes_pressed():
 	Global.pokemon1CurrentHeart += 100
 	
 	if Global.player.getNumberPokemon() >= 2:
-		Global.pokemon2.addBuffHeart(100)
+		Global.pokemon2CurrentHeart += 100
 		if Global.player.getNumberPokemon() == 3:
-			Global.pokemon3.addBuffHeart(100)
+			Global.pokemon3CurrentHeart += 100
 	
 	$CanvasLayer/Hoimau.visible = false
