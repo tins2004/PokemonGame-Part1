@@ -26,4 +26,47 @@ shape = SubResource("RectangleShape2D_pxbyy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_58mw8")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hoimau" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -116.5
+offset_right = 293.5
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Yes" type="Button" parent="CanvasLayer/Hoimau"]
+layout_mode = 0
+offset_left = 401.5
+offset_top = 145.5
+offset_right = 511.5
+offset_bottom = 206.5
+text = "300 xu"
+
+[node name="No" type="Button" parent="CanvasLayer/Hoimau"]
+layout_mode = 0
+offset_left = 80.5
+offset_top = 145.5
+offset_right = 190.5
+offset_bottom = 206.5
+text = "No"
+
+[node name="Label" type="Label" parent="CanvasLayer/Hoimau"]
+layout_mode = 0
+offset_left = 191.5
+offset_top = 59.5
+offset_right = 403.5
+offset_bottom = 82.5
+text = "Hồi máu cho tất cả PokeBin"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="CanvasLayer/Hoimau/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Hoimau/No" to="." method="_on_no_pressed"]

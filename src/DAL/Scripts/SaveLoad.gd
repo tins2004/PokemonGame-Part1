@@ -11,8 +11,8 @@ func saveData():
 			"namePlayer" : Global.player.getName(),
 			"sexPlayer" : Global.player.getSex(),
 			"numberPokemon": 1,
-			"pokeBall": 0,
-			"money": 0,
+			"pokeBall": 10,
+			"money": 1000,
 			"pikachuLevel": 3,
 			"pikachuCurrentHeart": (60 * 3) * 2/3,
 		}

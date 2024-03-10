@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://6v142xybvkoj"]
+[gd_scene load_steps=32 format=3 uid="uid://6v142xybvkoj"]
 
 [ext_resource type="Script" path="res://src/GUI/Scripts/Map1.gd" id="1_6pk54"]
 [ext_resource type="PackedScene" uid="uid://i7w1yp5aqqgm" path="res://img/Tilemap/tile_map.tscn" id="1_rugec"]
 [ext_resource type="PackedScene" uid="uid://d4e8fd150gelf" path="res://src/GUI/Scenes/Humans/Player.tscn" id="2_rf1g4"]
 [ext_resource type="PackedScene" uid="uid://c7qp3ck6n1a6n" path="res://src/BLL/Scenes/PokemonPosition.tscn" id="3_5iov4"]
+[ext_resource type="PackedScene" uid="uid://cjsn0w3obsi1e" path="res://src/GUI/Scenes/Humans/NPCs.tscn" id="3_o6nh4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0x1n"]
 size = Vector2(131, 1266)
@@ -57,6 +58,9 @@ size = Vector2(171, 121.625)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm5x"]
 size = Vector2(133, 46)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmwt"]
+radius = 59.0085
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axtgf"]
 size = Vector2(240.75, 998.75)
 
@@ -92,6 +96,9 @@ script = ExtResource("1_6pk54")
 
 [node name="TileMap" parent="." instance=ExtResource("1_rugec")]
 scale = Vector2(3, 3)
+
+[node name="NPCs" parent="." instance=ExtResource("3_o6nh4")]
+position = Vector2(1512, 997)
 
 [node name="Player" parent="." instance=ExtResource("2_rf1g4")]
 position = Vector2(293, 365)
@@ -315,6 +322,10 @@ shape = SubResource("CapsuleShape2D_lhuk0")
 [node name="CollisionShape2D51" type="CollisionShape2D" parent="Block"]
 position = Vector2(1976, 292)
 shape = SubResource("RectangleShape2D_wrm5x")
+
+[node name="CollisionShape2D52" type="CollisionShape2D" parent="Block"]
+position = Vector2(631, 335)
+shape = SubResource("CircleShape2D_cqmwt")
 
 [node name="PokemonPosition" parent="." instance=ExtResource("3_5iov4")]
 metadata/_edit_group_ = true
