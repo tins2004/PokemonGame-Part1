@@ -1,1 +1,3 @@
-#Fun product
+# Fun product
+There are classes: pokemon, character, npc
+There are elemental skill map systems,...
